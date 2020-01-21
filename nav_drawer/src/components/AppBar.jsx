@@ -21,44 +21,58 @@ import Typography from '@material-ui/core/Typography';
 import styled, { css } from "styled-components";
 import { ifProp } from "styled-tools";
 
-const drawerWidth = 240;
+const drawerWidth = "240px";
 
 
 const StyledAppBar = styled(mui_AppBar)`
   display: flex;
   background-color: black;
+  width: 100%;
+  margin-left: 0;
+  transition: all 225ms cubic-bezier(0, 0, 0.2, 1) 0ms;
 
   ${ifProp('mobileOpen', css`
     background-color: red;
-    width: calc(100% - ${ drawerWidth}px);
-    margin-left: ${ drawerWidth }px;
+    width: calc(100% - ${ drawerWidth});
+    margin-left: ${ drawerWidth };
   `)}
-
-  ${props => props.theme.breakpoints.up('md')} {
-    width: calc(100% - ${ drawerWidth }px);
-    margin-left: ${ drawerWidth }px;
-  }
 `;
 
 const StyledMenuButton = styled(IconButton)`
 
-  ${props => props.theme.breakpoints.up('md')} {
-    display: none;
-  }
-
 `;
 
 
+const StyledDrawer = styled(Drawer)`
+  width: ${ drawerWidth };
+
+  & .MuiDrawer-paper {
+    width: ${ drawerWidth };
+  }
+`
+
 export default function AppBar(props) {
-  const [mobileOpen, setMobileOpen] = React.useState(false);
+  const [mobileOpen, setMobileOpen] = React.useState(true);
 
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
-    console.log('open')
   };
 
   return (
     <StyledAppBar mobileOpen={mobileOpen} position="fixed">
+      <StyledDrawer
+        open={mobileOpen}
+        onClose={() => handleDrawerToggle()}
+        variant="persistent"
+        anchor="left"
+      >
+        <ul>
+          <li>item1</li>
+          <li>item2</li>
+          <li>item3</li>
+          <li>item4</li>
+        </ul>
+      </StyledDrawer>
       <Toolbar>
         <StyledMenuButton
           color="inherit"
