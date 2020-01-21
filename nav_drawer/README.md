@@ -1,3 +1,9 @@
+
+## Useful Dev Links
+https://github.com/diegohaz/styled-tools
+https://material-ui.com/guides/interoperability/
+https://material-ui.com/customization/default-theme/
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
